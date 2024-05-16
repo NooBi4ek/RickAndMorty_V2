@@ -21,7 +21,7 @@ export const makeStore = () => {
     whitelist: ['auth'],
     storage,
   };
-  const persistedReducer = persistReducer(persistConfig, rootReducer);
+  const persistedReducer = persistReducer<any,any>(persistConfig, rootReducer);
 
   const store: any = createStore(
     persistedReducer,
