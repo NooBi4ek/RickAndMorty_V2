@@ -1,5 +1,5 @@
 import { successAction } from '../../lib/actionType';
-import { EpisodesActionTypes, openModal } from '../actions/episodesAction';
+import { EpisodesActionTypes } from '../actions/episodesAction';
 import { RootReducer } from './rootReducer';
 
 
