@@ -5,14 +5,14 @@ import { RootReducer } from './rootReducer';
 
 export interface CharactersInitialType {
   charactersData: any;
-  countPages: any;
+  countCharactersPages: any;
   searchValue: string;
   isLoading: boolean;
 }
 
 const charactersInitialState: CharactersInitialType = {
     charactersData: [],
-    countPages: [],
+    countCharactersPages: null,
     searchValue: "",
     isLoading: false,
 };
@@ -21,8 +21,8 @@ export const charactersReducer = (state = charactersInitialState, action: any) =
   switch (action.type) {
     case successAction(CharactersActionTypes.GET_CHARACTERS_DATA_SERVER): {
       const charactersData = action.payload.data.results;
-      const countPages = action.payload.data.info.pages;
-      return { ...state, charactersData, countPages };
+      const countCharactersPages = action.payload.data.info.pages;
+      return { ...state, charactersData, countCharactersPages };
     }
 
     case CharactersActionTypes.GET_CHARACTERS_DATA_SERVER: {
@@ -51,4 +51,4 @@ export const getSearchValue = (state: RootReducer) =>
   state.characters.searchValue;
 
 export const getCountPages = (state:RootReducer) =>
-  state.characters.countPages;
+  state.characters.countCharactersPages;

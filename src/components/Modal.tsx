@@ -12,7 +12,7 @@ import {
   getModalCharactersData,
 } from "../store/reducers/episodesReducer";
 import { EpisodesItem } from "../models/EpisodesItem";
-import { getCharactersDataServer } from "../store/actions/episodesAction";
+import { getEpisodeCharactersDataServer } from "../store/actions/episodesAction";
 
 interface Props {
   open: boolean;
@@ -54,7 +54,7 @@ const Modal: FC<Props> = ({ open, handleClose }) => {
 
   useEffect(() => {
     dispatch(
-      getCharactersDataServer(
+      getEpisodeCharactersDataServer(
         episodeData.characters.map(
           (el) => el.split("https://rickandmortyapi.com/api/character/")[1]
         )

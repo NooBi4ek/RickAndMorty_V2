@@ -7,7 +7,7 @@ export interface EpisodesInitialType {
   episodesData: any;
   episodeData: any;
   modalCharactersData:any,
-  countPages: any,
+  countEpisodesPages: any,
   isLoading: boolean;
   openModal: boolean;
 }
@@ -16,7 +16,7 @@ const episodesInitialState: EpisodesInitialType = {
   episodesData: [],
   episodeData: [],
   modalCharactersData:[],
-  countPages:null,
+  countEpisodesPages:null,
   isLoading: false,
   openModal: false,
 };
@@ -34,10 +34,10 @@ export const episodesReducer = (state = episodesInitialState, action: any) => {
 
     case successAction(EpisodesActionTypes.GET_PAGES_EPISODES_DATA_SERVER): {
       const data = action.payload.data.info.pages;
-      return {...state, countPages: data}
+      return {...state, countEpisodesPages: data}
     }
 
-    case successAction(EpisodesActionTypes.GET_CHARACTERS_DATA_SERVER): {
+    case successAction(EpisodesActionTypes.GET_EPISODE_CHARACTERS_DATA_SERVER): {
       const data = action.payload.data;
       return {...state, modalCharactersData: data}
     }
@@ -70,4 +70,4 @@ export const getModalCharactersData = (state:RootReducer) =>
   state.episodes.modalCharactersData;
 
 export const getCountPages = (state:RootReducer) =>
-  state.episodes.countPages;
+  state.episodes.countEpisodesPages;
