@@ -37,7 +37,7 @@ export const episodesReducer = (state = episodesInitialState, action: any) => {
       return {...state, countPages: data}
     }
 
-    case successAction(EpisodesActionTypes.GET_CHARACTERS_DATA_SERVER): {
+    case successAction(EpisodesActionTypes.GET_EPISODE_CHARACTERS_DATA_SERVER): {
       const data = action.payload.data;
       return {...state, modalCharactersData: data}
     }
