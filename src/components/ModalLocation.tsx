@@ -6,14 +6,7 @@ import {
   Stack,
   Typography,
 } from "@mui/material";
-import {
-  FC,
-  JSXElementConstructor,
-  ReactElement,
-  ReactNode,
-  ReactPortal,
-  useState,
-} from "react";
+import { FC, useState } from "react";
 
 interface Props {
   open: boolean;
