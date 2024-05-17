@@ -4,7 +4,7 @@ import rickAndMorty from "../img/rickandmorty.jpg";
 import { FC, useState } from "react";
 import ModalLocation from "./ModalLocation";
 const GET_LOCATION_DATA = gql`
-  query Location($page: Int) {
+  query Locations($page: Int) {
     locations(page: $page) {
       info {
         count
