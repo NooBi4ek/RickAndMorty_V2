@@ -76,7 +76,7 @@ const ModalLocation: FC<Props> = ({ open, handleClose, currentId }) => {
           <div>Location type: {data?.location.type}</div>
           <div>Location dimension: {data?.location.dimension}</div>
           <div>
-            Characters on episode:
+            Residents on location:
             {data?.location.residents
               .slice(0, residentsEnd)
               .map((el: ResidentsData) => el.name)
