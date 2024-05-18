@@ -3,7 +3,7 @@ import { Box, Pagination, Stack } from "@mui/material";
 import MainLayout from "../layout/MainLayout";
 import LocationsInfo from "../components/LocationsInfo";
 import { gql, useQuery } from "@apollo/client";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 const GET_ALL_CHARACTERS = gql`
   {
@@ -17,7 +17,7 @@ const GET_ALL_CHARACTERS = gql`
 
 const Locations = () => {
   const { data } = useQuery(GET_ALL_CHARACTERS);
-  const [currentPage, setCurrentPage] = useState(1);
+  const [currentPage, setCurrentPage] = useState<number>(1);
   const handleChange = (event: any) => {
     setCurrentPage(event.target.textContent);
   };

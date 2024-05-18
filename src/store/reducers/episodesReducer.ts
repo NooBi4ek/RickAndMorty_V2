@@ -1,20 +1,22 @@
 import { successAction } from '../../lib/actionType';
+import { CharactersItems } from '../../models/CharactersItem';
+import { EpisodesItem } from '../../models/EpisodesItem';
 import { EpisodesActionTypes } from '../actions/episodesAction';
 import { RootReducer } from './rootReducer';
 
 
 export interface EpisodesInitialType {
-  episodesData: any;
-  episodeData: any;
-  modalCharactersData:any,
-  countEpisodesPages: any,
+  episodesData: EpisodesItem[];
+  episodeData: EpisodesItem|null;
+  modalCharactersData:CharactersItems[],
+  countEpisodesPages: number|null,
   isLoading: boolean;
   openModal: boolean;
 }
 
 const episodesInitialState: EpisodesInitialType = {
   episodesData: [],
-  episodeData: [],
+  episodeData: null,
   modalCharactersData:[],
   countEpisodesPages:null,
   isLoading: false,
@@ -25,6 +27,7 @@ export const episodesReducer = (state = episodesInitialState, action: any) => {
   switch (action.type) {
     case successAction(EpisodesActionTypes.GET_EPISODES_DATA_SERVER): {
       const data = action.payload.data.results;
+      console.log(data);
       return { ...state, episodesData: data };
     }
 
@@ -44,7 +47,7 @@ export const episodesReducer = (state = episodesInitialState, action: any) => {
 
     case successAction(EpisodesActionTypes.OPEN_MODAL): {
       const data = action.payload.data;
-
+      console.log(data);
       return {...state, openModal:true,episodeData: data};
     }
 

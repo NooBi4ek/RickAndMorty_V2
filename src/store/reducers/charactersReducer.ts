@@ -1,11 +1,12 @@
 import { successAction } from '../../lib/actionType';
+import { CharactersItems } from '../../models/CharactersItem';
 import { CharactersActionTypes } from '../actions/charactersAction';
 import { RootReducer } from './rootReducer';
 
 
 export interface CharactersInitialType {
-  charactersData: any;
-  countCharactersPages: any;
+  charactersData: CharactersItems[];
+  countCharactersPages: number|null;
   searchValue: string;
   isLoading: boolean;
 }

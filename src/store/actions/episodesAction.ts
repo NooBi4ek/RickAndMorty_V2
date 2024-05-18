@@ -6,7 +6,7 @@ export enum EpisodesActionTypes {
     CLOSE_MODAL = "CLOSE_MODAL",
   }
 
-export const getEpisodesDataServer = (props:string) =>({
+export const getEpisodesDataServer = (props:number) =>({
     type: EpisodesActionTypes.GET_EPISODES_DATA_SERVER,
     payload: {
         request: {
@@ -26,7 +26,7 @@ payload: {
 }
 })
 
-export const getEpisodeCharactersDataServer = (props:any) =>({
+export const getEpisodeCharactersDataServer = (props:string[]) =>({
     type:EpisodesActionTypes.GET_EPISODE_CHARACTERS_DATA_SERVER,
     payload: {
         request: {

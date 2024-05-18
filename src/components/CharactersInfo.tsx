@@ -1,32 +1,17 @@
-import { Avatar, Box, Stack } from "@mui/material";
+import { Avatar, Stack } from "@mui/material";
 
 import { useSelector } from "react-redux";
 import { getCharactersData } from "../store/reducers/charactersReducer";
 import { CharactersItems } from "../models/CharactersItem";
+import { WrapperBoxInfo, WrapperStackInfo } from "../ui/UniversalStyles";
 
 const CharactersInfo = () => {
   const charactersData = useSelector(getCharactersData);
 
   return (
-    <Box
-      sx={{
-        border: "1px solid #E0E0E0",
-        borderRadius: "5px",
-        padding: "0 10px",
-        width: "600px",
-      }}
-    >
+    <WrapperBoxInfo>
       {charactersData.map((element: CharactersItems) => (
-        <Stack
-          sx={{
-            flexDirection: "row",
-            gap: "20px",
-            borderBottom: "1px solid #E0E0E0",
-            margin: "20px 10px",
-            userSelect: "none",
-          }}
-          key={element.id}
-        >
+        <WrapperStackInfo key={element.id}>
           <Avatar
             src={element.image}
             alt="R&M"
@@ -39,9 +24,9 @@ const CharactersInfo = () => {
             <div>Gender: {element.gender}</div>
             <Stack flexDirection="row"></Stack>
           </Stack>
-        </Stack>
+        </WrapperStackInfo>
       ))}
-    </Box>
+    </WrapperBoxInfo>
   );
 };
 

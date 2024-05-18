@@ -10,6 +10,7 @@ import {
 import { closeModal, openModal } from "../store/actions/episodesAction";
 import { EpisodesItem } from "../models/EpisodesItem";
 import Modal from "./Modal";
+import { WrapperBoxInfo, WrapperStackInfo } from "../ui/UniversalStyles";
 
 const EpisodesInfo = () => {
   const episodesData = useSelector(getEpisodesData);
@@ -26,16 +27,9 @@ const EpisodesInfo = () => {
   };
 
   return (
-    <Box
-      sx={{
-        border: "1px solid #E0E0E0",
-        borderRadius: "5px",
-        padding: "0 10px",
-        width: "600px",
-      }}
-    >
+    <WrapperBoxInfo>
       {episodesData.map((element: EpisodesItem) => (
-        <Stack
+        <WrapperStackInfo
           sx={{
             flexDirection: "row",
             gap: "20px",
@@ -64,10 +58,10 @@ const EpisodesInfo = () => {
               </Button>
             </Stack>
           </Stack>
-        </Stack>
+        </WrapperStackInfo>
       ))}
       {openPopup && <Modal open={openPopup} handleClose={handleClose} />}
-    </Box>
+    </WrapperBoxInfo>
   );
 };
 

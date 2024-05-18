@@ -4,7 +4,7 @@ export enum CharactersActionTypes {
     GET_PAGES_CHARACTERS_DATA_SERVER = "GET_PAGES_CHARACTERS_DATA_SERVER",
   }
 
-  export const getCharactersDataServer = (props:any) =>({
+  export const getCharactersDataServer = (props: { currentPage?: string; text: string; status: string; gender: string; countPage?: number|null }) =>({
     type: CharactersActionTypes.GET_CHARACTERS_DATA_SERVER,
     payload: {
         request: {

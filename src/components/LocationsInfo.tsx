@@ -3,6 +3,8 @@ import { Box, Stack, Avatar, Button } from "@mui/material";
 import rickAndMorty from "../img/rickandmorty.jpg";
 import { FC, useState } from "react";
 import ModalLocation from "./ModalLocation";
+import { WrapperBoxInfo, WrapperStackInfo } from "../ui/UniversalStyles";
+
 const GET_LOCATION_DATA = gql`
   query Locations($page: Int) {
     locations(page: $page) {
@@ -41,7 +43,7 @@ const LocationsInfo: FC<Props> = ({ currentPage }) => {
   const [openModal, setOpenModal] = useState<boolean>(false);
   const [currentId, setCurrentId] = useState(1);
 
-  const { data } = useQuery(GET_LOCATION_DATA, {
+  const { data, loading, error } = useQuery(GET_LOCATION_DATA, {
     variables: { page: Number(currentPage) },
   });
 
@@ -54,55 +56,42 @@ const LocationsInfo: FC<Props> = ({ currentPage }) => {
     setOpenModal(false);
   };
   return (
-    <Box
-      sx={{
-        border: "1px solid #E0E0E0",
-        borderRadius: "5px",
-        padding: "0 10px",
-        width: "600px",
-      }}
-    >
-      {console.log(currentPage)}
-      {data?.locations?.results.map((element: ResultsItem) => (
-        <Stack
-          sx={{
-            flexDirection: "row",
-            gap: "20px",
-            borderBottom: "1px solid #E0E0E0",
-            margin: "20px 10px",
-            userSelect: "none",
-          }}
-          key={element.id}
-        >
-          <Avatar
-            src={rickAndMorty}
-            alt="R&M"
-            sx={{ width: "100px", height: "100px" }}
-          />
-          <Stack flexDirection="column" gap="20px">
-            <div>Name of location: {element.name}</div>
-            <div>Location type: {element.type}</div>
-            <div>Location dimension: {element.dimension}</div>
-            <Stack flexDirection="row">
-              <Button
-                onClick={() => {
-                  handleOpen(element.id);
-                }}
-              >
-                More info
-              </Button>
+    <>
+      {loading && <div>Loading info...</div>}
+      {error && <div>Error</div>}
+      <WrapperBoxInfo>
+        {data?.locations?.results.map((element: ResultsItem) => (
+          <WrapperStackInfo key={element.id}>
+            <Avatar
+              src={rickAndMorty}
+              alt="R&M"
+              sx={{ width: "100px", height: "100px" }}
+            />
+            <Stack flexDirection="column" gap="20px">
+              <div>Name of location: {element.name}</div>
+              <div>Location type: {element.type}</div>
+              <div>Location dimension: {element.dimension}</div>
+              <Stack flexDirection="row">
+                <Button
+                  onClick={() => {
+                    handleOpen(element.id);
+                  }}
+                >
+                  More info
+                </Button>
+              </Stack>
             </Stack>
-          </Stack>
-        </Stack>
-      ))}
-      {openModal && (
-        <ModalLocation
-          open={openModal}
-          currentId={currentId}
-          handleClose={handleClose}
-        />
-      )}
-    </Box>
+          </WrapperStackInfo>
+        ))}
+        {openModal && (
+          <ModalLocation
+            open={openModal}
+            currentId={currentId}
+            handleClose={handleClose}
+          />
+        )}
+      </WrapperBoxInfo>
+    </>
   );
 };
 

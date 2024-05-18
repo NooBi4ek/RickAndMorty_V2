@@ -14,6 +14,10 @@ interface Props {
   currentId: number;
 }
 
+interface ResidentsData {
+  name: string;
+}
+
 const style = {
   position: "absolute" as "absolute",
   top: "50%",
@@ -46,8 +50,8 @@ const GET_LOCATION_DATA = gql`
 `;
 
 const ModalLocation: FC<Props> = ({ open, handleClose, currentId }) => {
-  const [residentsEnd, setResidentsEnd] = useState(3);
-  const [clickLoadMore, setClickLoadMore] = useState(false);
+  const [residentsEnd, setResidentsEnd] = useState<number>(3);
+  const [clickLoadMore, setClickLoadMore] = useState<boolean>(false);
   const { data } = useQuery(GET_LOCATION_DATA, {
     variables: { id: currentId },
   });
@@ -75,7 +79,7 @@ const ModalLocation: FC<Props> = ({ open, handleClose, currentId }) => {
             Characters on episode:
             {data?.location.residents
               .slice(0, residentsEnd)
-              .map((el: { name: any }) => el.name)
+              .map((el: ResidentsData) => el.name)
               .join(", ")}
           </div>
         </Stack>

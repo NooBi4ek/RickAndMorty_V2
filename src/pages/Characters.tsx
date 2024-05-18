@@ -101,6 +101,7 @@ const Characters = () => {
                 STATUS FILTER:
                 {status.map((el) => (
                   <Button
+                    key={el.id}
                     onClick={() => {
                       handleClick(el.status, checkedGender);
                     }}
@@ -119,6 +120,7 @@ const Characters = () => {
                 GENDER FILTER:
                 {gender.map((el) => (
                   <Button
+                    key={el.id}
                     onClick={() => {
                       handleClick(checkedStatus, el.gender);
                     }}
@@ -131,7 +133,7 @@ const Characters = () => {
             <CharactersInfo />
 
             <Pagination
-              count={countPage}
+              count={Number(countPage)}
               variant="outlined"
               onChange={(event) => {
                 handleChange(event);

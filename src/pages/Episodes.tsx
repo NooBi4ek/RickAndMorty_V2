@@ -20,7 +20,7 @@ const Episodes = () => {
 
   useEffect(() => {
     dispatch(getPagesEpisodesDataServer());
-    dispatch(getEpisodesDataServer("1"));
+    dispatch(getEpisodesDataServer(1));
   }, []);
 
   return (
@@ -34,7 +34,7 @@ const Episodes = () => {
           >
             <EpisodesInfo />
             <Pagination
-              count={countPage}
+              count={Number(countPage)}
               variant="outlined"
               onChange={(event) => {
                 handleChange(event);

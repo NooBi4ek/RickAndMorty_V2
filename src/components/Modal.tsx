@@ -11,12 +11,16 @@ import {
   getEpisodeData,
   getModalCharactersData,
 } from "../store/reducers/episodesReducer";
-import { EpisodesItem } from "../models/EpisodesItem";
 import { getEpisodeCharactersDataServer } from "../store/actions/episodesAction";
+import { RootReducer } from "../store/reducers/rootReducer";
 
 interface Props {
   open: boolean;
   handleClose: () => void;
+}
+
+interface CharactersData {
+  name: string;
 }
 
 const style = {
@@ -35,32 +39,35 @@ const style = {
 };
 
 const Modal: FC<Props> = ({ open, handleClose }) => {
-  const episodeData: EpisodesItem = useSelector(getEpisodeData);
+  const episodeData = useSelector(getEpisodeData);
   const charactersData = useSelector(getModalCharactersData);
 
   const dispatch = useDispatch();
 
-  const [characterEnd, setCharacterEnd] = useState(3);
-  const [clickLoadMore, setClickLoadMore] = useState(false);
+  const [characterEnd, setCharacterEnd] = useState<number>(3);
+  const [clickLoadMore, setClickLoadMore] = useState<boolean>(false);
 
   const handleClick = () => {
     setClickLoadMore((prev) => !prev);
-
-    setCharacterEnd(charactersData.length);
-    if (clickLoadMore === true) {
-      setCharacterEnd(3);
-    }
+    setCharacterEnd(clickLoadMore ? 3 : charactersData.length);
   };
 
   useEffect(() => {
-    dispatch(
-      getEpisodeCharactersDataServer(
-        episodeData.characters.map(
-          (el) => el.split("https://rickandmortyapi.com/api/character/")[1]
+    if (episodeData) {
+      dispatch(
+        getEpisodeCharactersDataServer(
+          episodeData.characters.map(
+            (el: string) =>
+              el.split("https://rickandmortyapi.com/api/character/")[1]
+          )
         )
-      )
-    );
-  }, []);
+      );
+    }
+  }, [dispatch, episodeData]);
+
+  if (!episodeData) {
+    return null; // or a loading spinner, or some fallback UI
+  }
 
   return (
     <MuiModal
@@ -77,7 +84,7 @@ const Modal: FC<Props> = ({ open, handleClose }) => {
             Characters on episode:
             {charactersData
               .slice(0, characterEnd)
-              .map((el: { name: any }) => el.name)
+              .map((el: CharactersData) => el.name)
               .join(", ")}
           </div>
           <Typography
