@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import MainLayout from "../layout/MainLayout";
 import { useEffect, useState } from "react";
 
-import { Box, Button, Pagination, Stack, TextField, Typography } from "@mui/material";
+import { Box, Button, Pagination, PaginationItem, Stack, TextField, Typography } from "@mui/material";
 import {
   getCountPages,
   getErrorCharacters,
@@ -69,6 +69,7 @@ const Characters = () => {
   }
 
   useEffect(() => {
+    console.log(1);
     dispatch(getPagesCharactersDataServer());
     dispatch(
       getCharactersDataServer({
@@ -157,9 +158,9 @@ const Characters = () => {
               onChange={(event) => {
                 handleChange(event);
               }}
-            /></>}
-            
-            
+              
+            />
+        </>}    
           </Stack>
         </Box>
       </MainLayout>

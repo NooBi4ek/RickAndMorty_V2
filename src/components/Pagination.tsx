@@ -10,7 +10,7 @@ interface Props {
 
 const Pagination: FC<Props> = ({ count, variant, onChange }) => {
   return (
-    <StyledPagination count={count} variant={variant} onChange={onChange} />
+    <StyledPagination count={count} variant={variant} onChange={onChange}/>
   );
 };
 
