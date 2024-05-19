@@ -149,8 +149,8 @@ const Characters = () => {
                 ))}
               </Box>
             </Stack>
-            {error?<Stack ><Typography
-            sx={{fontSize:'30px',color: 'red'}}>Error! You write wrong data</Typography><Button onClick={handleClear} sx={{border:'1px solid #38CCDD',borderRadius:'10px'}}>Clear data</Button></Stack>:<><CharactersInfo />
+            {error?<Stack sx={{width:'40vw', textAlign:'center'}} ><Typography
+            sx={{fontSize:'30px',color: 'red'}}>Error find characters with you parameters, please try choose diferent parameter or clear data</Typography><Button onClick={handleClear} sx={{border:'1px solid #38CCDD',borderRadius:'10px'}}>Clear data</Button></Stack>:<><CharactersInfo />
             <Pagination
               count={Number(countPage)}
               variant="outlined"
