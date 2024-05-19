@@ -27,7 +27,6 @@ export const episodesReducer = (state = episodesInitialState, action: any) => {
   switch (action.type) {
     case successAction(EpisodesActionTypes.GET_EPISODES_DATA_SERVER): {
       const data = action.payload.data.results;
-      console.log(data);
       return { ...state, episodesData: data };
     }
 
@@ -47,7 +46,6 @@ export const episodesReducer = (state = episodesInitialState, action: any) => {
 
     case successAction(EpisodesActionTypes.OPEN_MODAL): {
       const data = action.payload.data;
-      console.log(data);
       return {...state, openModal:true,episodeData: data};
     }
 
