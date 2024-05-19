@@ -2,12 +2,14 @@ import { useDispatch, useSelector } from "react-redux";
 import MainLayout from "../layout/MainLayout";
 import { useEffect, useState } from "react";
 
-import { Box, Button, Pagination, Stack, TextField } from "@mui/material";
+import { Box, Button, Pagination, Stack, TextField, Typography } from "@mui/material";
 import {
   getCountPages,
+  getErrorCharacters,
   getSearchValue,
 } from "../store/reducers/charactersReducer";
 import {
+  clearTextField,
   getCharactersDataServer,
   getPagesCharactersDataServer,
   typeText,
@@ -28,6 +30,7 @@ const Characters = () => {
   const dispatch = useDispatch();
   const countPage = useSelector(getCountPages);
   const text = useSelector(getSearchValue);
+  const error = useSelector(getErrorCharacters);
   const [checkedStatus, setCheckedStatus] = useState<string>("");
   const [checkedGender, setCheckedGender] = useState<string>("");
 
@@ -62,6 +65,7 @@ const Characters = () => {
         gender: "",
       })
     );
+    dispatch(clearTextField());
   }, []);
 
   return (
@@ -105,6 +109,7 @@ const Characters = () => {
                     onClick={() => {
                       handleClick(el.status, checkedGender);
                     }}
+                    sx={el.status===checkedStatus?{border:'1px solid #38CCDD',borderRadius:'5px solid #000'}:{}}
                   >
                     {el.status}
                   </Button>
@@ -124,21 +129,23 @@ const Characters = () => {
                     onClick={() => {
                       handleClick(checkedStatus, el.gender);
                     }}
+                    sx={el.gender===checkedGender?{border:'1px solid #38CCDD',borderRadius:'5px solid #000'}:{}}
                   >
                     {el.gender}
                   </Button>
                 ))}
               </Box>
             </Stack>
-            <CharactersInfo />
-
+            {error?<Typography>Error selected gender or status</Typography>:<><CharactersInfo />
             <Pagination
               count={Number(countPage)}
               variant="outlined"
               onChange={(event) => {
                 handleChange(event);
               }}
-            />
+            /></>}
+            
+            
           </Stack>
         </Box>
       </MainLayout>

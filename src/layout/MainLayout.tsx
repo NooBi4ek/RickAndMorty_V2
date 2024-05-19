@@ -11,7 +11,9 @@ const MainLayout: FC<Props> = ({ children }) => {
   return (
     <Stack minHeight="100vh">
       <Header />
+      <Stack sx={{flex:'1'}}>
       {children}
+      </Stack>
       <Footer />
     </Stack>
   );

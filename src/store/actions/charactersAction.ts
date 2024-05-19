@@ -2,6 +2,7 @@ export enum CharactersActionTypes {
     TYPE_TEXT = "TYPE_TEXT",
     GET_CHARACTERS_DATA_SERVER = "GET_CHARACTERS_DATA_SERVER",
     GET_PAGES_CHARACTERS_DATA_SERVER = "GET_PAGES_CHARACTERS_DATA_SERVER",
+    CLEAR_TEXT_FIELD = "CLEAR_TEXT_FIELD"
   }
 
   export const getCharactersDataServer = (props: { currentPage?: string; text: string; status: string; gender: string; countPage?: number|null }) =>({
@@ -27,4 +28,9 @@ payload: {
         url: '/character'
     }
 }
+})
+
+export const clearTextField = () =>({
+    type: CharactersActionTypes.CLEAR_TEXT_FIELD,
+    payload: {}
 })
