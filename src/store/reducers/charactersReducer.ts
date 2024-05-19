@@ -29,6 +29,7 @@ export const charactersReducer = (state = charactersInitialState, action: any) =
     }
 
     case failAction(CharactersActionTypes.GET_CHARACTERS_DATA_SERVER): {
+      console.log(action.payload)
       return { ...state, isLoading: true, error: true };
     }
 

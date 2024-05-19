@@ -55,6 +55,19 @@ const Characters = () => {
     dispatch(getCharactersDataServer({ countPage, text, status, gender }));
   };
 
+  const handleClear = () =>{
+    setCheckedGender('');
+    setCheckedStatus('');
+    dispatch(
+      getCharactersDataServer({
+        currentPage: "1",
+        text: "",
+        status: "",
+        gender: "",
+      }))
+    dispatch(clearTextField());
+  }
+
   useEffect(() => {
     dispatch(getPagesCharactersDataServer());
     dispatch(
@@ -136,7 +149,8 @@ const Characters = () => {
                 ))}
               </Box>
             </Stack>
-            {error?<Typography>Error selected gender or status</Typography>:<><CharactersInfo />
+            {error?<Stack ><Typography
+            sx={{fontSize:'30px',color: 'red'}}>Error! You write wrong data</Typography><Button onClick={handleClear} sx={{border:'1px solid #38CCDD',borderRadius:'10px'}}>Clear data</Button></Stack>:<><CharactersInfo />
             <Pagination
               count={Number(countPage)}
               variant="outlined"
