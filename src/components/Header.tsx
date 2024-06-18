@@ -1,6 +1,7 @@
-import { Box, Stack, Typography } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import { PageRoutes, pages } from "../router/types";
 import { Link } from "react-router-dom";
+import { WrapperNavInfo } from "../ui/UniversalStyles";
 
 const Header = () => {
   return (
@@ -10,15 +11,7 @@ const Header = () => {
         marginBottom: "20px",
       }}
     >
-      <Stack
-        sx={{
-          justifyContent: "center",
-          gap: "300px",
-          height: "100px",
-          flexDirection: "row",
-          alignItems: "center",
-        }}
-      >
+      <WrapperNavInfo>
         <Typography
           sx={{
             a: {
@@ -49,7 +42,7 @@ const Header = () => {
         >
           <Link to={pages[PageRoutes.Location]()}>Location</Link>
         </Typography>
-      </Stack>
+      </WrapperNavInfo>
     </Box>
   );
 };

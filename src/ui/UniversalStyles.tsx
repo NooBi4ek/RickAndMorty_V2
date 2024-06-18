@@ -14,3 +14,11 @@ export const WrapperStackInfo = styled(Stack)`
   margin: 20px 10px;
   user-select: none;
 `;
+
+export const WrapperNavInfo = styled(Stack)`
+  justify-content: center;
+  gap: 300px;
+  height: 100px;
+  flex-direction: row;
+  align-items: center;
+`;

@@ -1,5 +1,6 @@
-import { Box, Stack, Typography } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import { Link } from "react-router-dom";
+import { WrapperNavInfo } from "../ui/UniversalStyles";
 
 const Footer = () => {
   return (
@@ -9,15 +10,7 @@ const Footer = () => {
         marginTop: "20px",
       }}
     >
-      <Stack
-        sx={{
-          justifyContent: "center",
-          gap: "300px",
-          height: "100px",
-          flexDirection: "row",
-          alignItems: "center",
-        }}
-      >
+      <WrapperNavInfo>
         <Typography sx={{ color: "#fff" }}>Created by Maxim Haiduk</Typography>
         <Typography
           sx={{
@@ -39,7 +32,7 @@ const Footer = () => {
         >
           <Link to="https://t.me/StAr_PlatINyM">Contact with me</Link>
         </Typography>
-      </Stack>
+      </WrapperNavInfo>
     </Box>
   );
 };

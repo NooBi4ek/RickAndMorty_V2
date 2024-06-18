@@ -11,7 +11,6 @@ export interface EpisodesInitialType {
   modalCharactersData:CharactersItems[],
   countEpisodesPages: number|null,
   isLoading: boolean;
-  openModal: boolean;
 }
 
 const episodesInitialState: EpisodesInitialType = {
@@ -20,7 +19,6 @@ const episodesInitialState: EpisodesInitialType = {
   modalCharactersData:[],
   countEpisodesPages:null,
   isLoading: false,
-  openModal: false,
 };
 
 export const episodesReducer = (state = episodesInitialState, action: any) => {
@@ -46,11 +44,7 @@ export const episodesReducer = (state = episodesInitialState, action: any) => {
 
     case successAction(EpisodesActionTypes.OPEN_MODAL): {
       const data = action.payload.data;
-      return {...state, openModal:true,episodeData: data};
-    }
-
-    case EpisodesActionTypes.CLOSE_MODAL: {
-      return {...state,openModal: false};
+      return {...state, episodeData: data};
     }
 
     default:
@@ -63,9 +57,6 @@ export const getEpisodesData = (state: RootReducer) =>
 
 export const getEpisodeData = (state:RootReducer) =>
   state.episodes.episodeData;
-
-export const getOpenModal = (state:RootReducer) =>
-  state.episodes.openModal;
 
 export const getModalCharactersData = (state:RootReducer) =>
   state.episodes.modalCharactersData;

@@ -3,8 +3,6 @@ import axios from 'axios';
 import axiosMiddleware from 'redux-axios-middleware';
 import { rootReducer } from './reducers/rootReducer';
 import createSagaMiddleware from 'redux-saga';
-import rootSaga from './saga/rootSaga';
-import { options } from './axiosConfig';
 import { persistStore, persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 
@@ -25,10 +23,9 @@ export const makeStore = () => {
 
   const store: any = createStore(
     persistedReducer,
-    applyMiddleware(axiosMiddleware(client, options), sagaMiddleWare),
+    applyMiddleware(axiosMiddleware(client), sagaMiddleWare),
   );
   store.__persistor = persistStore(store);
-  store.sagaTask = sagaMiddleWare.run(rootSaga);
   return store;
 };
 

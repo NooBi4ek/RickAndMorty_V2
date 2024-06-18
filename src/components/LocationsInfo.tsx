@@ -1,5 +1,5 @@
 import { gql, useQuery } from "@apollo/client";
-import { Box, Stack, Avatar, Button } from "@mui/material";
+import { Stack, Avatar, Button } from "@mui/material";
 import rickAndMorty from "../img/rickandmorty.jpg";
 import { FC, useState } from "react";
 import ModalLocation from "./ModalLocation";

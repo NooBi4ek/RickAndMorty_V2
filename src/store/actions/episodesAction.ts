@@ -45,8 +45,3 @@ export const openModal = (props:number) =>({
         }
     }
 })
-
-export const closeModal = () =>({
-    type: EpisodesActionTypes.CLOSE_MODAL,
-    payload: {},
-})
